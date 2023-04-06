@@ -63,4 +63,4 @@
 ![Screenshot_1680801914](https://user-images.githubusercontent.com/107456389/230456290-fdb85639-8991-4cc0-8a4b-acc5b6fb7b62.png)
    
 * * *
-> 참조 링크 [KSUIntroApp]
+> 참조 링크 [KSUIntroApp](https://kimjaegwan0218.github.io/HighPrograming/KSUIntro/)
