@@ -1,0 +1,329 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>jQuery Mobile</title>
+	<link rel="stylesheet" href="./css/jquery.mobile-1.4.5.min.css" />
+	<script src="./js/jquery-1.11.1.min.js"></script>
+	<script src="./js/Chart.min.js"></script>
+	<script src="./js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="cordova.js"></script>
+	<link rel="stylesheet" href="./css/bulma.min.css">
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wm0k61l1qe"></script>
+	<script>var files = ["1-1.png", "1-1.jpg", "1-2.jpg", "1-3.jpg", "1-4.jpg", "1-5.jpg", "1-6.jpg", "1-7.jpg", "1-8.jpg", "1-9.jpg", "1-10.jpg", "1-11.jpg"];
+		var imgs = [];
+		for (i = 0; i < files.length; i++) {
+			imgs[i] = new Image(); //이미지 객체 생성
+			imgs[i].src = files[i];
+		}
+		var next = 1;
+		function change(obj) {
+			obj.src = imgs[next].src;
+			next++;
+			next %= imgs.length;
+		}
+	</script>
+	<style>
+		li {
+			list-style: none;
+		}
+
+		.picture {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.picture li {
+			float: left;
+			width: 50%;
+		}
+
+		.picture li a {
+			display: block;
+			margin: 5px;
+			border: 1px
+		}
+
+		.picture li img {
+			display: block;
+			width: 50%;
+			height: auto;
+		}
+
+		.picture li img:hover {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	</style>
+	<!-- 사용자 정의 스크립트 파일 -->
+	<script src="myDeviceInfo.js"></script>
+	<script>
+		$(document).ready(function() {   
+		initCordova();			
+		$('#btnDeviceInfo').click(function() {
+			getDeviceInfo();
+		});
+	});
+	function initCordova() {
+ 		document.addEventListener('deviceready', onDeviceReady, true);
+	}   
+   function onDeviceReady() {
+		navigator.notification.alert('장치 준비됨', null, '코르도바 API');
+	} 
+	</script>
+
+</head>
+
+<body>
+	<div data-theme="b">
+		<div data-role="page" id="home">
+			<div data-role="header" data-theme="b">
+				<h1>경성대학교 소개 앱</h1>
+			</div>
+			<div data-role="content" style="text-align:center">
+				<img src="bgks1.png">
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#intro">경성대학교 소개</a></li>
+					<li><a href="#movie" data-rel="dialog">경성대학교 영상</a></li>
+					<li><a href="#wizard3-1" data-rel="dialog">경성대학교 음악</a></li>
+					<li><a href="#gallery">경성대학교 사진</a></li>
+					<li><a href="#chart1" data-rel="dialog">경성대학교 학사통계</a></li>
+					<li><a href="#infoM" data-rel="dialog">단말기 정보</a></li>
+				</ul>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h1>경성대학교_김재관</h1>
+			</div>
+		</div>
+
+		<!-- 소개 -->
+		<div data-role="page" id="intro" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a href="#home" data-icon="arrow-l" data-direction="reverse">처음</a>
+				<h1>경성대학교 소개</h1>
+			</div>
+			<div data-role="content">
+				<div style="text-align:center">
+					<img src="bgks2.png">
+				</div>
+				<div data-role="collapsible-set" data-theme="b" data-content-theme="e">
+					<div data-role="collapsible" data-collapsed="false">
+						<article class="message is-primary">
+							<div class="message-header">
+								<h3>경성대학교 역사</h3>
+							</div>
+							<div class="message-body">
+								일제시대 신사참배, 황민화운동, 민족정신말살에 적극적으로 앞장서고 일본침략전쟁에 적극 협력한 친일파 거물급 목사 김길창(金吉昌)이 해방 이후 교육자 양성을
+								목적으로
+								1955년 6월에 경남사범대학숙을 설립한 것이 시초였다.
+							</div>
+						</article>
+					</div>
+					<div data-role="collapsible">
+						<h3>경성대학교 주소</h3>
+						<img src="map.png" width="100%" height="100%">
+						<p>부산광역시 남구 수영로 309</p>
+					</div>
+					<div data-role="collapsible">
+						<h3>경성대학교 상징</h3>
+						<p>학교의 대표적 상징물이자 교조는 독수리다.[7] 과거 독수리가 경성대에 날아왔는데 힘이 빠져 날 수가 없는 지경이었다고... 이후 학교 측에서 치료시킨 뒤 날려
+							보냈으나 얼마 뒤 약해진 상태로 다시 돌아왔고, 결국 중앙도서관 앞 독수리 우리에서 생활하게 되었다. ..생략</p>
+					</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h1>경성대학교_김재관</h1>
+			</div>
+		</div>
+
+		<!-- 영상 -->
+		<div data-role="page" id="movie" data-theme="b">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<h1>경성대학교 영상</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-bar ui-bar-a">경성대학교 공식 홍보 영상</div><br />
+				<li><iframe width="100%" height="315" src="https://www.youtube.com/embed/8dGRePMevvc"
+						title="YouTube video player" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen></iframe></li><br />
+				<div class="ui-bar ui-bar-a">경성대학교 공과대 영상</div><br />
+				<li><iframe width="100%" height="315" src="https://www.youtube.com/embed/MQo5hGxPGSU"
+						title="YouTube video player" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen></iframe></li>
+			</div>
+			<div data-role="footer" data-theme="b">
+			</div>
+		</div>
+
+		<!-- 음악 -->
+		<div data-role="page" id="wizard3-1">
+			<div data-role="header">
+				<h1>경성대학교 음악</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-bar ui-bar-e">홍보 음악</div><br />
+				<audio controls width="100%" preload="metadata">
+					<source src="ksmovie.mp3" type="audio/mp3">
+				</audio>
+				<img src="introbg.png" alt="" width="100%">
+			</div>
+			<div data-role="footer">
+				<a href="#home">처음</a>
+			</div>
+		</div>
+
+		<!-- 갤러리 -->
+		<div data-role="page" id="gallery" data-theme="b">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<a href="#home" data-icon="arrow-l" data-direction="reverse">처음</a>
+				<h1>경성대학교 갤러리</h1>
+			</div>
+			<p>
+				<img id="img" style="border:20px ridge wheat;" src="1-1.png" width="100%" height="100%"
+					onclick="change(this)">
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h1>경성대학교_김재관</h1>
+			</div>
+		</div>
+
+		<!-- 차트 -->
+		<div data-role="page" id="chart1">
+			<div data-role="header">
+				<h1>재학생 남녀 비율</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-bar ui-bar-e">재학생 남녀 비율</div><br />
+				<canvas id="doughnut-chart" width="100%" height="50px"></canvas>
+				<script>
+					new Chart(document.getElementById("doughnut-chart"), {
+						type: 'doughnut',
+						data: {
+							labels: ["남학생", "여학생"],
+							datasets: [
+								{
+									label: "재적학생수 (명)",
+									backgroundColor: ["#0000FF", "#FF0000"],
+									data: [52.8, 47.2]
+								}
+							]
+						},
+						options: {
+							title: {
+								display: true,
+								text: '재적학생수 16076명'
+							}
+						}
+					});
+				</script>
+			</div>
+			<div data-role="footer">
+				<a href="#home" data-direction="reverse">이전</a>
+				<a href="#chart2" data-rel="dialog" data-transition="slide">다음</a>
+			</div>
+		</div>
+
+
+		<div data-role="page" id="chart2">
+			<div data-role="header">
+				<h1>전공 분야별 등록금</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-bar ui-bar-e">전공 분야별 등록금</div><br />
+				<canvas id="bar-chart" width="100%" height="50px"></canvas>
+				<script>
+					new Chart(document.getElementById("bar-chart"), {
+						type: 'bar',
+						data: {
+							labels: ["인문", "자연", "예체능", "공학"],
+							datasets: [
+								{
+									label: "단위 천원, 연평균 6578천원",
+									backgroundColor: ["#66CCFF", "#66CCFF", "#66CCFF", "#66CCFF"],
+									data: [5471, 7138, 7391, 7517]
+								}
+							]
+						},
+						options: {
+							legend: { display: false },
+							title: {
+								display: true,
+								text: '단위 천원, 연평균 6578천원'
+							}
+						}
+					});
+				</script>
+			</div>
+			<div data-role="footer">
+				<a href="#chart1" data-direction="reverse">이전</a>
+				<a href="#chart3" data-rel="dialog" data-transition="slide">다음</a>
+				<a href="#home">처음</a>
+			</div>
+		</div>
+
+
+		<div data-role="page" id="chart3">
+			<div data-role="header">
+				<h1>교원강의 담당 비율</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-bar ui-bar-e">교원강의 담당 비율</div><br />
+				<canvas id="doughnut-chart2" width="100%" height="50px"></canvas>
+				<script>
+					new Chart(document.getElementById("doughnut-chart2"), {
+						type: 'doughnut',
+						data: {
+							labels: ["전임", "초빙", "겸임", "강사", "기타"],
+							datasets: [
+								{
+									label: "percentage",
+									backgroundColor: ["#66CCFF", "#3333FF", "#9966FF", "#FF3333", "#FF9999"],
+									data: [70, 6, 5, 18, 1]
+								}
+							]
+						},
+						options: {
+							title: {
+								display: true,
+								text: ''
+							}
+						}
+					});
+				</script>
+			</div>
+			<div data-role="footer">
+				<a href="#chart2" data-direction="reverse">이전</a>
+				<a href="#home">처음</a>
+			</div>
+		</div>
+
+		<!-- 단말기 정보 -->
+		<div data-role="page" id="infoM">
+			<div data-role="header" data-position="fixed">
+				<h1>Cordova API</h1>
+			</div>	
+			<div data-role="content">		
+				<div class="ui-body ui-body-a"><br/>	
+					<div class="ui-bar ui-bar-b"><h3>단말기 정보 </h3></div>	
+					<div id="infoArea">		
+						<p>장치 플랫폼 : </p>
+						<p>OS 버전 : </p>
+						<p>장치 이름 : </p>					
+						<p>장치 UUID : </p>
+						<p>코르도바 버전 : </p>	
+						<p>화면 너비 : </p>
+						<p>화면 높이 : </p>			
+						<p>색상 깊이 : </p>	
+					</div>
+				</div>	
+				<button id="btnDeviceInfo">단말기 정보 확인</button> 
+			</div>
+		</div>	
+</body>
+
+</html>
